@@ -1,25 +1,56 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
-import Home from "../pages/Home/Home";
 import Categories from "../pages/Home/Categories/Categories";
+import NewsLayout from "../layouts/NewsLayout";
+import News from "../pages/NewsDetails/News/News";
+import LogIn from "../pages/LogIn/LogIn";
+import Register from "../pages/LogIn/Register";
+import LogInLayout from "../layouts/LogInLayout";
 
 const routes = createBrowserRouter([
-      
       {
-          path : '/',
+             path: '/',
+             element: <LogInLayout/>,
+             children: [
+                  {
+                        path: '/',
+                        element: <Navigate to="/category/0" replace={true}></Navigate>
+                  },
+                  {
+                        path: '/logIn',
+                        element: <LogIn/>
+                     },
+                  {
+                     path: '/register',
+                     element: <Register/>
+                  }
+             ]
+      },
+      {
+          path : '/category',
           element: <Main/>,
           children: [
+            
             {
-                  path: "/",
-                  element: <Home/>
-            },
-            {
-                   path : '/category/:id',
+                   path : '/category/:categoryId',
                    element: <Categories></Categories>,
+                   loader : ({params}) => fetch(`http://localhost:3000/category/${params.categoryId}`)
                    
-            }
+            },
+            
             
           ]
+      },
+      {
+            path: 'newsDetails',
+            element: <NewsLayout/>,
+            children: [
+                {
+                   path: ':newsId',
+                   element: <News/>,
+                   loader : ({params}) => fetch(`http://localhost:3000/newsDetails/${params.newsId}`)
+                }
+            ]
       }
 ]);
 

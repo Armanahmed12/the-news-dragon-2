@@ -1,11 +1,12 @@
+import moment from 'moment';
 import React from 'react';
 import { FaEye, FaRegBookmark, FaShareAlt } from 'react-icons/fa';
 import Rating from 'react-rating';
-import './Category.css';
+import { Link } from 'react-router-dom';
 
 const Category = ({ newsData }) => {
-    console.log(newsData);
-    const { author, title, image_url, details, rating, total_view } = newsData;
+   
+    const { _id, author, title, image_url, details, rating, total_view } = newsData;
 
     // this function will make your rating number perfect.
     const makePerfectRatingNum = (num) =>{
@@ -20,7 +21,6 @@ const Category = ({ newsData }) => {
         // rating number as string
         const ratingNumStirng = ratingNumber.toString();
          const ratingNumArrayWithDecimal =  ratingNumStirng.split(".");
-         console.log(ratingNumArrayWithDecimal);
         //  if the rating decimal less than .5 than we will make it to .5, Or we will make it to the nearest integer like 2, 3 Or 5
         const ratingDecimalNum = "." + Number(ratingNumArrayWithDecimal[1]);
         let modefiedDecimalInteger;
@@ -55,7 +55,7 @@ const Category = ({ newsData }) => {
                     <img className='rounded-circle' style={{ width: '40px', height: '40px' }} src={author.img} alt="" />
                     <div>
                         <p className='fw-bold m-0'>{author.name}</p>
-                        <small>{author.published_date}</small>
+                        <small>{moment().format('YYYY-MM-DD')}</small>
                     </div>
                 </div>
                 <div>
@@ -68,7 +68,7 @@ const Category = ({ newsData }) => {
                 <img className='img-fluid' src={image_url} alt="" />
                 <div className='mt-2'>{
                     details.length > 300 ? <div>{shortenDetails}
-                        <button className='bg-white border-0 fw-bold fs-6 text-danger text-decoration-underline'>Read More</button>
+                        <Link to={`/newsDetails/${_id}`}><button className='bg-white border-0 fw-bold fs-6 text-danger text-decoration-underline'>Read More</button></Link>
                     </div> : ""
                 }</div>
             </div>
@@ -79,9 +79,9 @@ const Category = ({ newsData }) => {
                     <div>
                         <Rating
                             placeholderRating={actualRatingNum}
-                            emptySymbol={<i class="fa-regular fa-star text-warning"></i>}
-                            placeholderSymbol={<i class="fa-solid fa-star text-warning"></i>}
-                            fullSymbol={<i class="fa-regular fa-star"></i>}
+                            emptySymbol={<i className="fa-regular fa-star text-warning"></i>}
+                            placeholderSymbol={<i className="fa-solid fa-star text-warning"></i>}
+                            fullSymbol={<i className="fa-regular fa-star"></i>}
                             readonly
                         />
                          <span className='ms-2'>{actualRatingNum}</span>
