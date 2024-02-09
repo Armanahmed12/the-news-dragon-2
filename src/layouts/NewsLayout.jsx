@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../pages/shared/Header/Header';
-import Footer from '../pages/shared/Footer/Footer';
 import { Col, Container, Row } from 'react-bootstrap';
 import RightNav from '../pages/shared/RightNav/RightNav';
 import { Outlet } from 'react-router-dom';
 import EditorInsight from '../pages/NewsDetails/EditorsInsight/EditorInsight';
 
 const NewsLayout = () => {
+  
     return (
         <Container>
             <Header />

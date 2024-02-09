@@ -6,8 +6,12 @@ import { FaUser } from 'react-icons/fa';
 
 const NavigationBar = () => {
     
-    const {user} = useContext(AuthContext);
+    const {user,logOutAUser} = useContext(AuthContext);
+        console.log(user);
+    const handleLogOutAUser = () =>{
 
+        logOutAUser();
+    }   
     return (
         <Navbar bg="primary" className="rounded mt-3 mx-4" data-bs-theme="dark">
             <Container className="me-0" style={{ width: "60%" }}>
@@ -21,7 +25,7 @@ const NavigationBar = () => {
                         user && <FaUser className="me-2 text-white fw-bold" />
                     }
                     {
-                        user ? <Button variant="danger">LogOut</Button> :
+                        user ? <Button variant="danger" onClick={handleLogOutAUser}>LogOut</Button> :
                             <Link to={'/logIn'}><Button variant="danger">Login</Button></Link>
                     }
                 </div>

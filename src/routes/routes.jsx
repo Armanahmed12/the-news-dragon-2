@@ -4,8 +4,10 @@ import Categories from "../pages/Home/Categories/Categories";
 import NewsLayout from "../layouts/NewsLayout";
 import News from "../pages/NewsDetails/News/News";
 import LogIn from "../pages/LogIn/LogIn";
-import Register from "../pages/LogIn/Register";
+
 import LogInLayout from "../layouts/LogInLayout";
+import PrivateRoute from "./PrivateRoute";
+import Register from "../pages/LogIn/Register";
 
 const routes = createBrowserRouter([
       {
@@ -43,11 +45,11 @@ const routes = createBrowserRouter([
       },
       {
             path: 'newsDetails',
-            element: <NewsLayout/>,
+            element: <PrivateRoute><NewsLayout/></PrivateRoute>,
             children: [
                 {
                    path: ':newsId',
-                   element: <News/>,
+              element: <News/>,
                    loader : ({params}) => fetch(`http://localhost:3000/newsDetails/${params.newsId}`)
                 }
             ]

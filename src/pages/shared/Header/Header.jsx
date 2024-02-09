@@ -6,7 +6,7 @@ import { Button } from 'react-bootstrap';
 import NavigationBar from '../NavigationBar/NavigationBar';
 
 const Header = () => {
-  
+
     return (
         <div className='text-center mt-2'>
             <img src={logoImg} alt="" /><br />
