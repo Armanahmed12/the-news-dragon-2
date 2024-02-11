@@ -10,50 +10,50 @@ import PrivateRoute from "./PrivateRoute";
 import Register from "../pages/LogIn/Register";
 
 const routes = createBrowserRouter([
-      {
-             path: '/',
-             element: <LogInLayout/>,
-             children: [
-                  {
-                        path: '/',
-                        element: <Navigate to="/category/0" replace={true}></Navigate>
-                  },
-                  {
-                        path: '/logIn',
-                        element: <LogIn/>
-                     },
-                  {
-                     path: '/register',
-                     element: <Register/>
-                  }
-             ]
-      },
+      // {
+      //        path: '/',
+      //        element: <LogInLayout/>,
+      //        children: [
+      //             {
+      //                   path: '/',
+      //                   element: <Navigate to="/" replace={true}></Navigate>
+      //             },
+      //             {
+      //                   path: '/logIn',
+      //                   element: <LogIn/>
+      //                },
+      //             {
+      //                path: '/register',
+      //                element: <Register/>
+      //             }
+      //        ]
+      // },
       {
           path : '/category',
           element: <Main/>,
           children: [
             
             {
-                   path : '/category/:categoryId',
+                   path : '/category/0',
                    element: <Categories></Categories>,
-                   loader : ({params}) => fetch(`http://localhost:3000/category/${params.categoryId}`)
+                   loader : ({params}) => fetch(`http://localhost:3000/category/0`)
                    
             },
             
             
           ]
       },
-      {
-            path: 'newsDetails',
-            element: <PrivateRoute><NewsLayout/></PrivateRoute>,
-            children: [
-                {
-                   path: ':newsId',
-              element: <News/>,
-                   loader : ({params}) => fetch(`http://localhost:3000/newsDetails/${params.newsId}`)
-                }
-            ]
-      }
+      // {
+      //       path: 'newsDetails',
+      //       element: <PrivateRoute><NewsLayout/></PrivateRoute>,
+      //       children: [
+      //           {
+      //              path: ':newsId',
+      //         element: <News/>,
+      //              loader : ({params}) => fetch(`https://the-news-dragon-server-2-k0q4pl22c-md-arman-ahmeds-projects.vercel.app/newsDetails/${params.newsId}`)
+      //           }
+      //       ]
+      // }
 ]);
 
 export default routes;

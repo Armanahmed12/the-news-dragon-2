@@ -5,12 +5,12 @@ import EditorInsight from '../../NewsDetails/EditorsInsight/EditorInsight';
 const LeftNav = () => {
     const [categories, setCategories] = useState([]);
     useEffect(() => {
-
-        fetch('http://localhost:3000/categories')
+        // http://localhost:3000
+        fetch("https://the-news-dragon-server-2-f6w71tkyc-md-arman-ahmeds-projects.vercel.app/categories")
             .then((res) => res.json())
             .then(data => setCategories(data))
             .catch(error => {
-                console.log(error);
+                console.log(error.message);
             });
 
     }, []);
