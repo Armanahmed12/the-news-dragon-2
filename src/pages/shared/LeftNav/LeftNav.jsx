@@ -4,9 +4,9 @@ import EditorInsight from '../../NewsDetails/EditorsInsight/EditorInsight';
 
 const LeftNav = () => {
     const [categories, setCategories] = useState([]);
+    
     useEffect(() => {
-        // http://localhost:3000
-        fetch("https://the-news-dragon-server-2-f6w71tkyc-md-arman-ahmeds-projects.vercel.app/categories")
+        fetch("https://the-dragon-news-server-snowy-iota.vercel.app/categories")
             .then((res) => res.json())
             .then(data => setCategories(data))
             .catch(error => {
