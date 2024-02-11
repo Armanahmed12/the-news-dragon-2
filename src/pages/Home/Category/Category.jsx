@@ -1,7 +1,8 @@
 import moment from 'moment';
 import React from 'react';
 import { FaEye, FaRegBookmark, FaShareAlt } from 'react-icons/fa';
-import Rating from 'react-rating';
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 import { Link } from 'react-router-dom';
 
 const Category = ({ newsData }) => {
@@ -77,13 +78,7 @@ const Category = ({ newsData }) => {
                 <hr className='mb-0'/>
                 <div className='d-flex justify-content-between align-items-center py-3 px-2'>
                     <div>
-                        <Rating
-                            placeholderRating={actualRatingNum}
-                            emptySymbol={<i className="fa-regular fa-star text-warning"></i>}
-                            placeholderSymbol={<i className="fa-solid fa-star text-warning"></i>}
-                            fullSymbol={<i className="fa-regular fa-star"></i>}
-                            readonly
-                        />
+                      <Rating style={{ maxWidth: 150, color:'green'}} value={rating.number} readOnly/>
                          <span className='ms-2'>{actualRatingNum}</span>
                     </div>
                     <div>
